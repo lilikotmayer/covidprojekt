@@ -2,32 +2,27 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-class CovidData:
 
-    datatype = 'array'
+class LiliHomework:
 
-    def __init__(self, results, control, name):
-        self.results = results
-        self.control = control
-        self.name = name
-        
-        self.results = self.normalize()
-        
+    def __init__(self, result):
+      self.result = result
+
     def __repr__(self):
-        return f"Covid data: {self.results}"
+        return f"data on Covid: {self.result}"
     
     def __len__(self):
-        return len(self.results)
-    
-    def __add__(self, other):
-        return [x + other for x in self.results]
-    
-    def normalize(self):
-        return [x / self.control for x in self.results]
-
+      return len(self.result)
+  
     def plot(self):
-        return px.line(self.results)
+      return px.line(self.result)
     
-    @classmethod
-    def changeType(cls, datatype):
-        cls.datatype = datatype
+    def sum(self):
+        return sum(self.result)
+
+    def save(self):
+        filename = 'CovidData.xlsx'
+        result = self.result
+        df = pd.DataFrame([self.result],)
+        df.to_excel('CovidData.xlsx')
+        print('Data is written to Excel File successfully.')
